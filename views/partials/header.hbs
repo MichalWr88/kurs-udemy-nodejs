@@ -1,0 +1,20 @@
+<header class="header">
+	<h1>{{pageTitle}}</h1>
+	<h2>Uzytkowni: {{ showUserInfo }}</h2>
+	<nav class="nav">
+		<p><a href="/">Home</a></p>
+		<p><a href="/about">About</a></p>
+		<p><a href="/help.html">help</a></p>
+	</nav>
+</header>
+<style>
+	.nav {
+		display: flex;
+	}
+
+	.nav p>a {
+		display: block;
+		padding: 5px;
+		text-transform: uppercase;
+	}
+</style>
