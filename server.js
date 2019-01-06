@@ -2,11 +2,12 @@ const express = require('express');
 const os = require('os');
 const hbs = require('hbs');
 
+const port = process.env.PORT || 3000;
+
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
-
 
 //helper function for hbs files
 hbs.registerHelper('getCurrentYear', () => {
@@ -27,12 +28,11 @@ app.use((req, res, next) => {
 	next();
 });
 //middelwear
-app.use((req,res,next)=>{
+app.use((req, res, next) => {
 	res.render('maintenance.hbs');
 });
 
 app.use(express.static(__dirname + '/public'));
-
 
 app.get('/', (req, res) => {
 	res.render('home.hbs', {
@@ -54,6 +54,6 @@ app.get('/bad', (req, res) => {
 	});
 });
 
-app.listen(3000, () => {
-	console.log('Server is up on port 3000');
+app.listen(port, () => {
+	console.log(`Server is up on port ${port}`);
 });
