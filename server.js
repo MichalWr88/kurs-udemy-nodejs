@@ -1,6 +1,7 @@
 const express = require('express');
 const os = require('os');
 const hbs = require('hbs');
+const version = require('./package.json');
 
 const port = process.env.PORT || 3000;
 
@@ -19,6 +20,10 @@ hbs.registerHelper('screamIt', text => {
 });
 hbs.registerHelper('showUserInfo', () => {
 	return os.userInfo().username;
+});
+
+hbs.registerHelper('showVersion', () => {
+	return version.version;
 });
 
 app.use((req, res, next) => {
@@ -45,6 +50,9 @@ app.get('/about', (req, res) => {
 	res.render('about.hbs', {
 		pageTitle: 'About Page',
 	});
+});
+app.get('/projects', (req, res) => {
+	res.render('projects.hbs', { pageTitle: 'About Page' });
 });
 
 // /bad - send back json with errorMessage
